@@ -1,0 +1,216 @@
+/*
+ *This program is a simple translator to ISO 8859-5 
+*/
+
+#include <iostream>
+#include <windows.h>
+#include <string>
+#include <conio.h>
+#include <fstream>
+
+using namespace std;
+
+string Conversion(string str, string str1) //  dictionary for translator
+{
+    string str3="01 ";
+    int size=str.size();
+    for (int i=0;i<size;i++)
+    {
+        if(str[i]==' ') str3+=" 20";
+        if(str[i]=='!') str3+=" 21";
+        if(str[i]=='\"') str3+=" 22";
+        if(str[i]=='#') str3+=" 23";
+        if(str[i]=='$') str3+=" 24";
+        if(str[i]=='%') str3+=" 25";
+        if(str[i]=='&') str3+=" 26";
+        if(str[i]=='\'') str3+=" 27";
+        if(str[i]=='(') str3+=" 28";
+        if(str[i]==')') str3+=" 29";
+        if(str[i]=='*') str3+=" 2A";
+        if(str[i]=='+') str3+=" 2B";
+        if(str[i]==',') str3+=" 2C";
+        if(str[i]=='-') str3+=" 2D";
+        if(str[i]=='.') str3+=" 2E";
+        if(str[i]=='/') str3+=" 2F";
+
+        if(str[i]=='0') str3+=" 30";
+        if(str[i]=='1') str3+=" 31";
+        if(str[i]=='2') str3+=" 32";
+        if(str[i]=='3') str3+=" 33";
+        if(str[i]=='4') str3+=" 34";
+        if(str[i]=='5') str3+=" 35";
+        if(str[i]=='6') str3+=" 36";
+        if(str[i]=='7') str3+=" 37";
+        if(str[i]=='8') str3+=" 38";
+        if(str[i]=='9') str3+=" 39";
+        if(str[i]==':') str3+=" 3A";
+        if(str[i]==';') str3+=" 3B";
+        if(str[i]=='<') str3+=" 3C";
+        if(str[i]=='=') str3+=" 3D";
+        if(str[i]=='>') str3+=" 3E";
+        if(str[i]=='?') str3+=" 3F";
+
+        if(str[i]=='@') str3+=" 40";
+        if(str[i]=='A') str3+=" 41";
+        if(str[i]=='B') str3+=" 42";
+        if(str[i]=='C') str3+=" 43";
+        if(str[i]=='D') str3+=" 44";
+        if(str[i]=='E') str3+=" 45";
+        if(str[i]=='F') str3+=" 46";
+        if(str[i]=='G') str3+=" 47";
+        if(str[i]=='H') str3+=" 48";
+        if(str[i]=='I') str3+=" 49";
+        if(str[i]=='J') str3+=" 4A";
+        if(str[i]=='K') str3+=" 4B";
+        if(str[i]=='L') str3+=" 4C";
+        if(str[i]=='M') str3+=" 4D";
+        if(str[i]=='N') str3+=" 4E";
+        if(str[i]=='O') str3+=" 4F";
+
+        if(str[i]=='P') str3+=" 50";
+        if(str[i]=='Q') str3+=" 51";
+        if(str[i]=='R') str3+=" 52";
+        if(str[i]=='S') str3+=" 53";
+        if(str[i]=='T') str3+=" 54";
+        if(str[i]=='U') str3+=" 55";
+        if(str[i]=='V') str3+=" 56";
+        if(str[i]=='W') str3+=" 57";
+        if(str[i]=='X') str3+=" 58";
+        if(str[i]=='Y') str3+=" 59";
+        if(str[i]=='Z') str3+=" 5A";
+        if(str[i]=='[') str3+=" 5B";
+        if(str[i]=='\\') str3+=" 5C";
+        if(str[i]==']') str3+=" 5D";
+        if(str[i]=='^') str3+=" 5E";
+        if(str[i]=='_') str3+=" 5F";
+
+        if(str[i]=='`') str3+=" 60";
+        if(str[i]=='a') str3+=" 61";
+        if(str[i]=='b') str3+=" 62";
+        if(str[i]=='c') str3+=" 63";
+        if(str[i]=='d') str3+=" 64";
+        if(str[i]=='e') str3+=" 65";
+        if(str[i]=='f') str3+=" 66";
+        if(str[i]=='g') str3+=" 67";
+        if(str[i]=='h') str3+=" 68";
+        if(str[i]=='i') str3+=" 69";
+        if(str[i]=='j') str3+=" 6A";
+        if(str[i]=='k') str3+=" 6B";
+        if(str[i]=='l') str3+=" 6C";
+        if(str[i]=='m') str3+=" 6D";
+        if(str[i]=='n') str3+=" 6E";
+        if(str[i]=='o') str3+=" 6F";
+
+        if(str[i]=='p') str3+=" 70";
+        if(str[i]=='q') str3+=" 71";
+        if(str[i]=='r') str3+=" 72";
+        if(str[i]=='s') str3+=" 73";
+        if(str[i]=='t') str3+=" 74";
+        if(str[i]=='u') str3+=" 75";
+        if(str[i]=='v') str3+=" 76";
+        if(str[i]=='w') str3+=" 77";
+        if(str[i]=='x') str3+=" 78";
+        if(str[i]=='y') str3+=" 79";
+        if(str[i]=='z') str3+=" 7A";
+        if(str[i]=='{') str3+=" 7B";
+        if(str[i]=='|') str3+=" 7C";
+        if(str[i]=='}') str3+=" 7D";
+        if(str[i]=='~') str3+=" 7E";
+
+ //Russian alphabet
+        if(str[i]=='А') str3+=" B0";
+        if(str[i]=='Б') str3+=" B1";
+        if(str[i]=='В') str3+=" B2";
+        if(str[i]=='Г') str3+=" B3";
+        if(str[i]=='Д') str3+=" B4";
+        if(str[i]=='Е') str3+=" B5";
+        if(str[i]=='Ж') str3+=" B6";
+        if(str[i]=='З') str3+=" B7";
+        if(str[i]=='И') str3+=" B8";
+        if(str[i]=='Й') str3+=" B9";
+        if(str[i]=='К') str3+=" BA";
+        if(str[i]=='Л') str3+=" BB";
+        if(str[i]=='М') str3+=" BC";
+        if(str[i]=='Н') str3+=" BD";
+        if(str[i]=='О') str3+=" BE";
+        if(str[i]=='П') str3+=" BF";
+
+        if(str[i]=='Р') str3+=" C0";
+        if(str[i]=='С') str3+=" C1";
+        if(str[i]=='Т') str3+=" C2";
+        if(str[i]=='У') str3+=" C3";
+        if(str[i]=='Ф') str3+=" C4";
+        if(str[i]=='Х') str3+=" C5";
+        if(str[i]=='Ц') str3+=" C6";
+        if(str[i]=='Ч') str3+=" C7";
+        if(str[i]=='Ш') str3+=" C8";
+        if(str[i]=='Щ') str3+=" C9";
+        if(str[i]=='Ъ') str3+=" CA";
+        if(str[i]=='Ы') str3+=" CB";
+        if(str[i]=='Ь') str3+=" CC";
+        if(str[i]=='Э') str3+=" CD";
+        if(str[i]=='Ю') str3+=" CE";
+        if(str[i]=='Я') str3+=" CF";
+
+        if(str[i]=='а') str3+=" D0";
+        if(str[i]=='б') str3+=" D1";
+        if(str[i]=='в') str3+=" D2";
+        if(str[i]=='г') str3+=" D3";
+        if(str[i]=='д') str3+=" D4";
+        if(str[i]=='е') str3+=" D5";
+        if(str[i]=='ж') str3+=" D6";
+        if(str[i]=='з') str3+=" D7";
+        if(str[i]=='и') str3+=" D8";
+        if(str[i]=='й') str3+=" D9";
+        if(str[i]=='к') str3+=" DA";
+        if(str[i]=='л') str3+=" DB";
+        if(str[i]=='м') str3+=" DC";
+        if(str[i]=='н') str3+=" DD";
+        if(str[i]=='о') str3+=" DE";
+        if(str[i]=='п') str3+=" DF";
+
+        if(str[i]=='р') str3+=" E0";
+        if(str[i]=='с') str3+=" E1";
+        if(str[i]=='т') str3+=" E2";
+        if(str[i]=='у') str3+=" E3";
+        if(str[i]=='ф') str3+=" E4";
+        if(str[i]=='х') str3+=" E5";
+        if(str[i]=='ц') str3+=" E6";
+        if(str[i]=='ч') str3+=" E7";
+        if(str[i]=='ш') str3+=" E8";
+        if(str[i]=='щ') str3+=" E9";
+        if(str[i]=='ъ') str3+=" EA";
+        if(str[i]=='ы') str3+=" EB";
+        if(str[i]=='ь') str3+=" EC";
+        if(str[i]=='э') str3+=" ED";
+        if(str[i]=='ю') str3+=" EE";
+        if(str[i]=='я') str3+=" EF";
+    }
+    return str3;
+}
+
+int main()
+{
+
+setlocale(LC_ALL,"RUS"); // Support for Russian language  for wConsole
+SetConsoleCP(1251);
+cout<<"\t\t***Translator to ISO 8859-5***\n \t\t\t\t(01 - First symbol)\n"<<endl;
+
+  for(;;)  //main Circle
+  {
+    cout<<"Enter string:    ";
+    string str;
+    getline(cin,str);
+    ofstream f("TranslateResult.txt", ios::app); //Save to file translator result 
+    f<<str<<"   ";
+    cout<<endl;
+    cout<<"Result: ";
+    str=Conversion(str,str);
+    cout<<str<<endl<<endl;
+    f<<str<<endl;
+    f.close();
+  }
+  
+system("pause");
+
+}
