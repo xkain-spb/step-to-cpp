@@ -1,0 +1,45 @@
+/*
+ *
+ *It's simple program for sequance turn-on and turn-off lights   
+ *numlock,caps lock, scroll lock
+ 
+ *Это простая программа для последовательного включения лампочек клавиатуры кнопок
+ *numlock,caps lock, scroll lock
+ * 
+*/
+#include <windows.h>
+
+using namespace std;
+
+void blink();
+bool b=GetKeyState(VK_ESCAPE); //initialized Escape key state
+int main()
+{
+
+for (;;) //main circle for light sequence
+  {
+    Sleep(100);
+    if (GetKeyState(VK_ESCAPE)!=b)  //turn off program if you push Escape
+      {
+      keybd_event( VK_ESCAPE, 0x45, KEYEVENTF_EXTENDEDKEY | 0, 0 );  // Push-on button Escape
+      keybd_event( VK_ESCAPE, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);  //Push-off button Escape
+      break;
+      }
+  blink();
+  }
+}
+
+void blink()  //sequance  turn-on and turn-off lights-on for numlock,caps lock, scroll lock
+{
+  keybd_event( VK_NUMLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | 0, 0 );
+  keybd_event( VK_NUMLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+  Sleep(50); //small pause for next turn-on light
+  
+  keybd_event( VK_CAPITAL, 0x45, KEYEVENTF_EXTENDEDKEY | 0, 0 );
+  keybd_event( VK_CAPITAL, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+  Sleep(50);
+
+  keybd_event( VK_SCROLL , 0x45, KEYEVENTF_EXTENDEDKEY | 0, 0 );
+  keybd_event( VK_SCROLL , 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+  Sleep(50);
+}
